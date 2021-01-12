@@ -7,7 +7,7 @@ type Queue struct {
 }
 
 func New() *Queue {
-	return &Queue{&l.List{}}
+	return &Queue{l.New()}
 }
 
 func (q *Queue) Empty() bool {
