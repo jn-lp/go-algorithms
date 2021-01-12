@@ -1,28 +1,28 @@
 package linkedlist
 
-type element struct {
+type LinkedListElement struct {
 	Value interface{}
-	next  *element
+	next  *LinkedListElement
 }
 
-func (e *element) Next() *element {
+func (e *LinkedListElement) Next() *LinkedListElement {
 	return e.next
 }
 
-type List struct {
-	Head *element
+type LinkedList struct {
+	Head *LinkedListElement
 	len  int
 }
 
-func New() *List {
-	return new(List)
+func New() *LinkedList {
+	return new(LinkedList)
 }
 
-func (l *List) Len() int {
+func (l *LinkedList) Len() int {
 	return l.len
 }
 
-func (l *List) Front() *element {
+func (l *LinkedList) Front() *LinkedListElement {
 	if l.len == 0 {
 		return nil
 	}
@@ -30,7 +30,7 @@ func (l *List) Front() *element {
 	return l.Head
 }
 
-func (l *List) Back() *element {
+func (l *LinkedList) Back() *LinkedListElement {
 	if l.len == 0 {
 		return nil
 	}
@@ -42,22 +42,22 @@ func (l *List) Back() *element {
 	return current
 }
 
-func (l *List) Prepend(Value interface{}) {
-	l.Head = &element{Value, l.Head}
+func (l *LinkedList) Prepend(Value interface{}) {
+	l.Head = &LinkedListElement{Value, l.Head}
 	l.len++
 }
 
-func (l *List) Append(Value interface{}) {
+func (l *LinkedList) Append(Value interface{}) {
 	current := l.Head
 	for current.next != nil {
 		current = current.next
 	}
-	current.next = &element{Value, nil}
+	current.next = &LinkedListElement{Value, nil}
 	l.len++
 }
 
 //TODO: simplify Delete
-func (l *List) Delete(e *element) (deleted *element) {
+func (l *LinkedList) Delete(e *LinkedListElement) (deleted *LinkedListElement) {
 	if l.Head == nil {
 		return
 	}
@@ -84,23 +84,23 @@ func (l *List) Delete(e *element) (deleted *element) {
 	return
 }
 
-func (l *List) DeleteHead() (deleted *element) {
+func (l *LinkedList) DeleteHead() (deleted *LinkedListElement) {
 	return l.Delete(l.Front())
 }
 
-func (l *List) DeleteTail() (deleted *element) {
+func (l *LinkedList) DeleteTail() (deleted *LinkedListElement) {
 	return l.Delete(l.Back())
 }
 
-func (l *List) Reverse() {
-	var prev, next *element
+func (l *LinkedList) Reverse() {
+	var prev, next *LinkedListElement
 	for current := l.Head; current != nil; prev, current = current, next {
 		next, current.next = current.next, prev
 	}
 	l.Head = prev
 }
 
-func (l *List) Slice() (s []interface{}) {
+func (l *LinkedList) Slice() (s []interface{}) {
 	for current := l.Head; current != nil; current = current.next {
 		s = append(s, current.Value)
 	}

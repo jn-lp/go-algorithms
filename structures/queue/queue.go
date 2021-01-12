@@ -3,7 +3,7 @@ package queue
 import l "github.com/jn-lp/go-algorithms/structures/linkedlist"
 
 type Queue struct {
-	linkedlist *l.List
+	linkedlist *l.LinkedList
 }
 
 func New() *Queue {
