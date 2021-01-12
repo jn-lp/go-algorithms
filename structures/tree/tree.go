@@ -6,9 +6,8 @@ import (
 )
 
 type BinaryTree struct {
-	Value int
-	Left  *BinaryTree
-	Right *BinaryTree
+	Value       int
+	Left, Right *BinaryTree
 }
 
 func New(rootValue int) *BinaryTree {
