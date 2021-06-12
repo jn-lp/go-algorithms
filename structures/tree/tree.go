@@ -46,11 +46,13 @@ func (bt *BinaryTree) BalanceFactor() int {
 func (bt *BinaryTree) Replace(oldChild *BinaryTree, newChild *BinaryTree) bool {
 	if bt.Left == oldChild {
 		bt.Left = newChild
+
 		return true
 	}
 
 	if bt.Right == oldChild {
 		bt.Right = newChild
+
 		return true
 	}
 
@@ -73,16 +75,21 @@ func (bt *BinaryTree) Walk(ch chan int) {
 
 func (bt *BinaryTree) Walker() <-chan int {
 	ch := make(chan int)
+
 	go func() {
 		bt.Walk(ch)
 		close(ch)
 	}()
+
 	return ch
 }
 
 func (bt *BinaryTree) String(child *BinaryTree) string {
-	ch := bt.Walker()
-	var values []string
+	var (
+		ch     = bt.Walker()
+		values = make([]string, len(ch))
+	)
+
 	for c := range ch {
 		values = append(values, strconv.Itoa(c))
 	}

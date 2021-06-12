@@ -1,20 +1,20 @@
 package doublylinkedlist
 
-type DoublyLinkedListElement struct {
+type Element struct {
 	Value      interface{}
-	prev, next *DoublyLinkedListElement
+	prev, next *Element
 }
 
-func (e *DoublyLinkedListElement) Next() *DoublyLinkedListElement {
+func (e *Element) Next() *Element {
 	return e.next
 }
 
-func (e *DoublyLinkedListElement) Prev() *DoublyLinkedListElement {
+func (e *Element) Prev() *Element {
 	return e.prev
 }
 
 type DoublyLinkedList struct {
-	Head *DoublyLinkedListElement
+	Head *Element
 	len  int
 }
 
@@ -26,7 +26,7 @@ func (l *DoublyLinkedList) Len() int {
 	return l.len
 }
 
-func (l *DoublyLinkedList) Front() *DoublyLinkedListElement {
+func (l *DoublyLinkedList) Front() *Element {
 	if l.len == 0 {
 		return nil
 	}
@@ -34,7 +34,7 @@ func (l *DoublyLinkedList) Front() *DoublyLinkedListElement {
 	return l.Head
 }
 
-func (l *DoublyLinkedList) Back() *DoublyLinkedListElement {
+func (l *DoublyLinkedList) Back() *Element {
 	if l.len == 0 {
 		return nil
 	}
